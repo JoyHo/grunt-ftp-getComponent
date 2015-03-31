@@ -1,7 +1,7 @@
 {
   "name": "grunt-ftp-getComponent",
   "description": "get ftp component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/JoyHo/grunt-ftp-getComponent",
   "author": {
     "name": "heyz",
