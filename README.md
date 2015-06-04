@@ -1,89 +1,73 @@
 # grunt-ftp-getComponent
 
-> get ftp component
+这是一个 [grunt](https://github.com/gruntjs/grunt) 任务插件，用于从ftp下载选中的组件到对应页面中.
 
-## Getting Started
-This plugin requires Grunt `~0.4.5`
+这个插件基于jsftp开发
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+
+## 开始
+
+安装插件
 
 ```shell
 npm install grunt-ftp-getComponent --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+## 使用
 
-```js
+在Gruntfile中的配置如下：
+
+```javascript
+'ftp_getComponent': {
+      build:{
+        auth:{
+          host: '110.84.45.98',
+          port: 21,
+          authKey:'key1'
+        },
+        src: 'test.html',//组件html需要插入到的本地文件
+        cssdir: 'css/',//本地CSS路径
+        jsdir: 'js/',//js路径
+        imgdir: 'images/',//本地图片路径
+        dest: '/heyz/Scrollcomponent'//ftp上的组件文件夹,oomponent是组件名称
+      }
+    }
+```
+
+加载任务:
+
+```javascript
 grunt.loadNpmTasks('grunt-ftp-getComponent');
 ```
 
-## The "ftp_getComponent" task
 
-### Overview
-In your project's Gruntfile, add a section named `ftp_getComponent` to the data object passed into `grunt.initConfig()`.
+配置参数:
 
-```js
-grunt.initConfig({
-  ftp_getComponent: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+- **host** - ftp地址
+- **port** - ftp地址使用的端口号
+- **authKey** - 存放ftp用户名和密码信息的文件，该文件后缀名为.ftppass
+- **src** - 组件html需要插入到的本地html文件
+- **cssdir** - 组件css存放在本地的CSS路径，组件CSS独立成文件并且以组件名作为文件名
+- **jsdir** - 组件js文件存放在本地的JS路径，组件JS存放在该路径下组件名文件夹中
+- **imgdir** - 组件图片插入到本地的图片路径，组件图片存放在该路径下组件名文件夹中
+- **dest** - ftp上的组件文件夹
+
+
+## 认证参数
+
+ftp用户名和密码都存放在一个命名为`.ftppass`的JSON文件中，这个文件必须存放在跟`Gruntfile`文件同一目录下。`.ftppass`文件格式如下：
+
+```javascript
+{
+  "key1": {
+    "username": "username1",
+    "password": "password1"
   },
-});
+  "key2": {
+    "username": "username2",
+    "password": "password2"
+  }
+}
 ```
 
-### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  ftp_getComponent: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  ftp_getComponent: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
