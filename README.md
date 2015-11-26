@@ -21,15 +21,15 @@ npm install grunt-ftp-getComponent --save-dev
 'ftp_getComponent': {
       build:{
         auth:{
-          host: '110.84.45.98',
-          port: 21,
+          host: '110.83.65.18',
+          port: 23,
           authKey:'key1'
         },
         src: 'test.html',//组件html需要插入到的本地文件
         cssdir: 'css/',//本地CSS路径
         jsdir: 'js/',//js路径
         imgdir: 'images/',//本地图片路径
-        dest: '/heyz/Scrollcomponent'//ftp上的组件文件夹,oomponent是组件名称
+        dest: '/hehe/Scrollcomponent'//ftp上的组件文件夹,oomponent是组件名称
       }
     }
 ```
